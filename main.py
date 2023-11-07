@@ -55,7 +55,7 @@ def index():
     start_date_def = start_date.strftime('%Y-%m-%d')
     end_date_def = end_date.strftime('%Y-%m-%d')
 
-    annoAccademicoBase = 13;  #primo anno
+    annoAccademicoBase = 13;
     annoAccademico = annoAccademicoBase
     august_15 = datetime.date(datetime.date.today().year, 8, 15)
     if today > august_15:
@@ -201,7 +201,7 @@ def index():
         'search[value]': '',
         'search[regex]': 'false',
         'NumeroColonne': '15',
-        "idAnnoAccademicoFiltroRR": [13, 14],  #in base a questo numero vediamo le assenze dei vari anni, il primo anno era il 13
+        "idAnnoAccademicoFiltroRR": annoAccademico,  #in base a questo numero vediamo le assenze dei vari anni, il primo anno era il 13
         "MateriePFFiltroRR": 0,
         "idTipologiaLezioneFiltroRR": "",
         "RisultatiPagina": 10000,
