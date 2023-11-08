@@ -55,11 +55,16 @@ def index():
     start_date_def = start_date.strftime('%Y-%m-%d')
     end_date_def = end_date.strftime('%Y-%m-%d')
 
-    annoAccademicoBase = 13;
+    combined_data = []#test unione due anni
+
+    annoAccademicoBase = 13
     annoAccademico = annoAccademicoBase
+
     august_15 = datetime.date(datetime.date.today().year, 8, 15)
     if today > august_15:
         annoAccademico += 1
+
+    annoAccademicoPrecedente = annoAccademico - 1
 
     try:
         cal = r.get(f'https://itsar.registrodiclasse.it/geopcfp2/json/fullcalendar_events_alunno.asp?Oggetto=idAlunno&idOggetto=2538&editable=false&z=1680542264288&start={start_date_def}&end={end_date_def}&_=1680542231937').text.strip()
@@ -214,7 +219,131 @@ def index():
         "ajax_tipotarget": "elenco_ricerca_registri",
         "z": 1681895380050
         }
+
+        payload_2 = {
+            'draw': '1',
+            'columns[0][data]': 'idRegistroAlunno',
+            'columns[0][name]': 'idRegistroAlunno',
+            'columns[0][searchable]': 'true',
+            'columns[0][orderable]': 'true',
+            'columns[0][search][value]': '',
+            'columns[0][search][regex]': 'false',
+            'columns[1][data]': 'Giorno',
+            'columns[1][name]': 'Giorno',
+            'columns[1][searchable]': 'true',
+            'columns[1][orderable]': 'true',
+            'columns[1][search][value]': '',
+            'columns[1][search][regex]': 'false',
+            'columns[2][data]': 'Data',
+            'columns[2][name]': 'Data',
+            'columns[2][searchable]': 'true',
+            'columns[2][orderable]': 'true',
+            'columns[2][search][value]': '',
+            'columns[2][search][regex]': 'false',
+            'columns[3][data]': 'DataOraInizio',
+            'columns[3][name]': 'DataOraInizio',
+            'columns[3][searchable]': 'true',
+            'columns[3][orderable]': 'true',
+            'columns[3][search][value]': '',
+            'columns[3][search][regex]': 'false',
+            'columns[4][data]': 'DataOraFine',
+            'columns[4][name]': 'DataOraFine',
+            'columns[4][searchable]': 'true',
+            'columns[4][orderable]': 'true',
+            'columns[4][search][value]': '',
+            'columns[4][search][regex]': 'false',
+            'columns[5][data]': 'MinutiPresenza',
+            'columns[5][name]': 'MinutiPresenza',
+            'columns[5][searchable]': 'true',
+            'columns[5][orderable]': 'true',
+            'columns[5][search][value]': '',
+            'columns[5][search][regex]': 'false',
+            'columns[6][data]': 'MinutiAssenza',
+            'columns[6][name]': 'MinutiAssenza',
+            'columns[6][searchable]': 'true',
+            'columns[6][orderable]': 'true',
+            'columns[6][search][value]': '',
+            'columns[6][search][regex]': 'false',
+            'columns[7][data]': 'CodiceMateria',
+            'columns[7][name]': 'CodiceMateria',
+            'columns[7][searchable]': 'true',
+            'columns[7][orderable]': 'true',
+            'columns[7][search][value]': '',
+            'columns[7][search][regex]': 'false',
+            'columns[8][data]': 'Materia',
+            'columns[8][name]': 'Materia',
+            'columns[8][searchable]': 'true',
+            'columns[8][orderable]': 'true',
+            'columns[8][search][value]': '',
+            'columns[8][search][regex]': 'false',
+            'columns[9][data]': 'CognomeDocente',
+            'columns[9][name]': 'CognomeDocente',
+            'columns[9][searchable]': 'true',
+            'columns[9][orderable]': 'true',
+            'columns[9][search][value]': '',
+            'columns[9][search][regex]': 'false',
+            'columns[10][data]': 'Docente',
+            'columns[10][name]': 'Docente',
+            'columns[10][searchable]': 'true',
+            'columns[10][orderable]': 'true',
+            'columns[10][search][value]': '',
+            'columns[10][search][regex]': 'false',
+            'columns[11][data]': 'DataGiustificazione',
+            'columns[11][name]': 'DataGiustificazione',
+            'columns[11][searchable]': 'true',
+            'columns[11][orderable]': 'true',
+            'columns[11][search][value]': '',
+            'columns[11][search][regex]': 'false',
+            'columns[12][data]': 'Note',
+            'columns[12][name]': 'Note',
+            'columns[12][searchable]': 'true',
+            'columns[12][orderable]': 'true',
+            'columns[12][search][value]': '',
+            'columns[12][search][regex]': 'false',
+            'columns[13][data]': 'idLezione',
+            'columns[13][name]': 'idLezione',
+            'columns[13][searchable]': 'true',
+            'columns[13][orderable]': 'true',
+            'columns[13][search][value]': '',
+            'columns[13][search][regex]': 'false',
+            'columns[14][data]': 'idAlunno',
+            'columns[14][name]': 'idAlunno',
+            'columns[14][searchable]': 'true',
+            'columns[14][orderable]': 'true',
+            'columns[14][search][value]': '',
+            'columns[14][search][regex]': 'false',
+            'columns[15][data]': 'DeveGiustificare',
+            'columns[15][name]': 'DeveGiustificare',
+            'columns[15][searchable]': 'true',
+            'columns[15][orderable]': 'true',
+            'columns[15][search][value]': '',
+            'columns[15][search][regex]': 'false',
+            'order[0][column]': '2',
+            'order[0][dir]': 'desc',
+            'order[1][column]': '3',
+            'order[1][dir]': 'desc',
+            'start': '0',
+            'length': '10000',
+            'search[value]': '',
+            'search[regex]': 'false',
+            'NumeroColonne': '15',
+            "idAnnoAccademicoFiltroRR": annoAccademicoPrecedente,
+            # in base a questo numero vediamo le assenze dei vari anni, il primo anno era il 13
+            "MateriePFFiltroRR": 0,
+            "idTipologiaLezioneFiltroRR": "",
+            "RisultatiPagina": 10000,
+            "SuffissoCampo": "FiltroRR",
+            "Oggetto": "",
+            "idScheda": "",
+            "NumeroPagina": 1,
+            "OrderBy": "DataOraInizio",
+            "ajax_target": "DIVRisultati",
+            "ajax_tipotarget": "elenco_ricerca_registri",
+            "z": 1681895380050
+        }
+
         presenze = r.post('https://itsar.registrodiclasse.it/geopcfp2/json/data_tables_ricerca_registri.asp', headers=f_header, data=payload).text
+        presenze_2 = r.post('https://itsar.registrodiclasse.it/geopcfp2/json/data_tables_ricerca_registri.asp', headers=f_header, data=payload_2).text
     except:
         return jsonify({'error': 'could not access'}), 500
     pres1 = presenze.replace("\r", "")
@@ -226,9 +355,23 @@ def index():
     pres7 = pres6.replace('class="btn btn-xs btn-success btn-block jq-tooltip" Title="Presente<br>Apri scheda lezione">P</a>"', '')
     pres8 = pres7.replace('Ã\xa0', 'à').replace(' h', '').replace(' min', '')
     data = json.loads(pres8)['data']
+
+    pres1_2 = presenze_2.replace("\r", "")
+    pres2_2 = pres1_2.replace("\n", "")
+    pres3_2 = pres2_2.replace("\t", "")
+    pres4_2 = pres3_2.replace("\\", "")
+    pres5_2 = pres4_2.replace('<a href="javascript: ModalLezione(', '')
+    pres6_2 = pres5_2.replace('class="btn btn-xs btn-danger btn-block jq-tooltip" Title="Assente<br>Apri scheda lezione">A</a>"', '')
+    pres7_2 = pres6_2.replace('class="btn btn-xs btn-success btn-block jq-tooltip" Title="Presente<br>Apri scheda lezione">P</a>"', '')
+    pres8_2 = pres7_2.replace('Ã\xa0', 'à').replace(' h', '').replace(' min', '')
+
+    data_2 = json.loads(pres8_2)['data']
+    data.extend(data_2)
     presenze_assenze = []
 
-    for item in data:
+    combined_data = data
+
+    for item in combined_data:
         codice_materia = item['CodiceMateria']
         materia = item['Materia']
         presenza = float(item['MinutiPresenza'].replace(' ', '.'))
