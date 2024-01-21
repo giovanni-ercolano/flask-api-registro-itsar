@@ -60,10 +60,14 @@ def index():
     annoAccademicoBase = 13
     annoAccademico = annoAccademicoBase
 
-    august_15 = datetime.date(datetime.date.today().year, 8, 15)
+    august_15 = datetime.date(2022, 8, 15)
+    print(august_15)
+
     if today > august_15:
         annoAccademico += 1
 
+
+    print(f"anno accademico {annoAccademico}")
     annoAccademicoPrecedente = annoAccademico - 1
 
     try:
