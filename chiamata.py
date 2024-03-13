@@ -13,14 +13,18 @@ response = requests.post('http://127.0.0.1:5000/', json=input_data)  # Assicurat
 print(response.status_code)  # Codice di stato della risposta
 
 data = response.json()
-presenze_assenze = data['presenze_assenze']
 
-# Utilizza un insieme per tenere traccia dei codici materia unici
-codici_materia_set = set()
+# presenze_assenze = data['presenze_assenze']
+#
+# # Utilizza un insieme per tenere traccia dei codici materia unici
+# codici_materia_set = set()
+#
+# # Scansiona i dati di presenze_assenze e stampa i codici materia senza duplicati
+# for presenza in presenze_assenze:
+#     codice_materia = presenza["codice_materia"]
+#     if codice_materia not in codici_materia_set:
+#         print(codice_materia)
+#         codici_materia_set.add(codice_materia)
 
-# Scansiona i dati di presenze_assenze e stampa i codici materia senza duplicati
-for presenza in presenze_assenze:
-    codice_materia = presenza["codice_materia"]
-    if codice_materia not in codici_materia_set:
-        print(codice_materia)
-        codici_materia_set.add(codice_materia)
+voti = data['voti']
+print(voti)
