@@ -1,6 +1,3 @@
 # flask
-A minimal Flask web application.
-
-For a step-by-step guide to deploying on [Railway](https://railway.app/?referralCode=alphasec), see [this](https://alphasec.io/how-to-deploy-a-python-flask-app-on-railway/) post, or click the button below.
-
-[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new/template/igzwwg?referralCode=alphasec)
+Questo script Python utilizza Flask per fare scraping di un registro elettronico online al fine di ottenere i dati relativi all'utente. 
+Successivamente, i dati vengono utilizzati per creare un'applicazione mobile che consente all'utente di accedere facilmente alle proprie informazioni sul registro elettronico.
