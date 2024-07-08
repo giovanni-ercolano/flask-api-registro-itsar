@@ -104,7 +104,27 @@ def index():
         grades.append(grade)
     materia_voto2 = res = dict(zip(subjects, grades))
 
-    materia_voto_def = {**materia_voto, **materia_voto2}
+    def unisci_voti(materia_voto, materia_voto2):
+        materia_voto_def = {}
+        materie_comuni = set(materia_voto.keys()) & set(materia_voto2.keys())
+
+        # Aggiungi i voti del primo anno
+        for materia, voto in materia_voto.items():
+            if materia in materie_comuni:
+                materia_voto_def[f"{materia}.01"] = voto
+            else:
+                materia_voto_def[materia] = voto
+
+        # Aggiungi i voti del secondo anno
+        for materia, voto in materia_voto2.items():
+            if materia in materie_comuni:
+                materia_voto_def[f"{materia}.02"] = voto
+            else:
+                materia_voto_def[materia] = voto
+
+        return materia_voto_def
+
+    materia_voto_def = unisci_voti(materia_voto, materia_voto2)
 
     start_date = today - datetime.timedelta(days=30 * 8)  # subtract 8 months
     end_date = today + datetime.timedelta(days=30 * 8)  # add 8 months
