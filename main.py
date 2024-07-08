@@ -464,7 +464,7 @@ def index():
         presenze_assenze.append(presenza)
 
     final_result = {
-        'voti': materia_voto_def,
+        'voti': fix_accents(materia_voto_def),
         'calendario': calendario,
         'presenze_assenze': presenze_assenze
     }
@@ -472,6 +472,31 @@ def index():
     print(final_result['voti'])
 
     return jsonify(final_result)
+
+
+def fix_accents(dictionary):
+    replacements = {
+        'Ã\xa0': 'a\'',  # à
+        'Ã\\xa0': 'a\'',  # à (variante)
+        'Ã \xa0': 'a\'',  # à (altra variante)
+        'Ã¨': 'e\'',  # è
+        'Ã©': 'e\'',  # é
+        'Ã¬': 'i\'',  # ì
+        'Ã²': 'o\'',  # ò
+        'Ã¹': 'u\'',  # ù
+        'Ã': 'A\'',  # À
+        'Ã€': 'E\'',  # È
+        'Ã‰': 'E\'',  # É
+        'ÃŒ': 'I\'',  # Ì
+    }
+
+    def replace_accents(text):
+        if isinstance(text, str):
+            for key, value in replacements.items():
+                text = text.replace(key, value)
+        return text
+
+    return {replace_accents(k): replace_accents(v) if isinstance(v, str) else v for k, v in dictionary.items()}
 
 
 if __name__ == '__main__':
